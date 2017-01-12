@@ -15,7 +15,7 @@ app.get('/api/',function(req,res){
 
 	const locationQuery = qs.stringify(req.query);
 	const requestUrl = `https://qiita.com/api/v2/items?per_page=20&${locationQuery}`;
-	const token = '';
+	const token = qiita.token;
 
 	const headers = {
 		'Authorization': `Bearer ${token}`
