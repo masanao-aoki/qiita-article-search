@@ -22,3 +22,5 @@ node_modulesとtoken.jsを作成したら、gulpを実行
 ```
 gulp
 ```
+
+「localhost:8888」にアクセスする
