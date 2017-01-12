@@ -1,0 +1,22 @@
+@charset "UTF-8";
+.pager {
+	overflow: hidden;
+	margin: 1rem 0 2rem;
+	padding: 0 1rem;
+}
+.pager li {
+	list-style: none;
+}
+.pager-item-next {
+	float: right;
+}
+.pager-item-prev {
+	float: left;
+}
+.pager li a {
+	display: block;
+	padding: 1rem 2rem;
+	color: #fff;
+	border-radius: .6rem;
+	background: #e91e63;
+}

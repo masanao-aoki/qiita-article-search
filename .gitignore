@@ -1,0 +1,9 @@
+#file ignore
+Thumbs.db
+.Ds_Store
+
+Gemfile.lock
+#directory ignore
+node_modules/
+root/
+token.js
