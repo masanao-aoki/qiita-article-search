@@ -9,16 +9,15 @@ export function fetchArticle(articleId) {
 			return new Promise((resolve, reject) => {
 				let url = 'http://qiita.com/api/v2/items/' + articleId
 				request
-					.get(url)
-					.withCredentials()
-					.end((err, res) => {
-						if (res.body) {
-							resolve(res.body);
-						} else {
-							reject('nnnn');
-						}
-					});
-
+				.get(url)
+				.withCredentials()
+				.end((err, res) => {
+					if (res.body) {
+						resolve(res.body);
+					} else {
+						reject('nnnn');
+					}
+				});
 			});
 		};
 
@@ -32,7 +31,7 @@ export function fetchArticle(articleId) {
 	};
 }
 
-export function fetchList({querys}) {
+export function fetchList({querys},content) {
 	return dispatch => {
 
 		let queryArray = {
@@ -45,12 +44,14 @@ export function fetchList({querys}) {
 
 				let query = qs.stringify(queryArray);
 				let url = '/api/?' + decodeURIComponent(query);
-				
+
 				request
 					.get(url)
 					.withCredentials()
 					.end((err, res) => {
 						if (res.body.length) {
+							let test = [...content, ...res.body];
+							console.log(test);
 							resolve(res.body);
 						} else {
 							reject('nnnn');

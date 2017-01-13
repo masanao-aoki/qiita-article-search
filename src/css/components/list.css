@@ -4,7 +4,6 @@
 	article
 ***************************************************/
 .article {
-	margin: 0 0 2rem 0;
 	.article-item {
 		position: relative;
 		margin: 0;
@@ -28,9 +27,6 @@
 			border-color: #f3f3f3 transparent transparent transparent;
 			content: '';
 			transform: translate(-50%,0);
-		}
-		&:last-child::after {
-			content: none;
 		}
 		a {
 			display: block;

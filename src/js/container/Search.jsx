@@ -16,7 +16,8 @@ import { fetchList, valueChange, pageNumChange, scrollTop } from '../action/acti
 export class Home extends React.Component {
 	componentWillMount() {
 		const {
-			location: {query}
+			location: {query},
+			content
 		} = this.props
 		this.queryChange(query);
 	}
@@ -24,7 +25,7 @@ export class Home extends React.Component {
 	componentDidMount() {
 		window.addEventListener('popstate', () => this.handlePopState());
 	}
-	
+
 	componentWillUnmount() {
 		window.removeEventListener('popstate', () => this.handlePopState());
 	}
@@ -37,7 +38,7 @@ export class Home extends React.Component {
 	queryChange(querys) {
 		this.props.valueChange(querys.q);
 		this.props.pageNumChange(querys.page);
-		this.props.fetchList({querys});
+		this.props.fetchList({querys},this.props.content);
 	}
 
     render() {
@@ -63,7 +64,7 @@ export class Home extends React.Component {
 					content
 				}}
 			/>
-			<Pager 
+			<Pager
 				{...{
 					searchValue,
 					currentPageNum
@@ -82,8 +83,8 @@ function mapDispatchToProps(dispatch) {
     return {
         valueChange: (searchVlue) => { dispatch(valueChange(searchVlue)) },
         pageNumChange: (pageNum) => { dispatch(pageNumChange(pageNum)) },
-		fetchList: ({querys}) => {
-			dispatch(fetchList({querys}))
+		fetchList: ({querys}, content) => {
+			dispatch(fetchList({querys},content))
 		}
     }
 }
