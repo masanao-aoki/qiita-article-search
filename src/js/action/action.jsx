@@ -39,6 +39,8 @@ export function fetchList({querys},content) {
 			page: querys.page
 		}
 
+		console.log(querys.page)
+
 		const aricleList = () => {
 			return new Promise((resolve, reject) => {
 
@@ -50,9 +52,8 @@ export function fetchList({querys},content) {
 					.withCredentials()
 					.end((err, res) => {
 						if (res.body.length) {
-							let test = [...content, ...res.body];
-							console.log(test);
-							resolve(res.body);
+							let body = [...content, ...res.body];
+							resolve(body);
 						} else {
 							reject('nnnn');
 						}
@@ -89,7 +90,7 @@ export const CHANGE_PAGE_NUM = 'CHANGE_PAGE_NUM'
 export function pageNumChange(currentPageNum) {
 	return {
 		type: CHANGE_PAGE_NUM,
-		currentPageNum: parseInt(currentPageNum)
+		currentPageNum: parseInt(currentPageNum)+1
 	}
 }
 

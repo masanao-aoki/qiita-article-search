@@ -22,41 +22,33 @@ export class Home extends React.Component {
 		this.queryChange(query);
 	}
 
-	componentDidMount() {
-		window.addEventListener('popstate', () => this.handlePopState());
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener('popstate', () => this.handlePopState());
-	}
-
-	handlePopState() {
-		const locationQuery = qs.parse(location.hash.split('?')[1]);
-		this.queryChange(locationQuery);
-	}
-
 	queryChange(querys) {
 		this.props.valueChange(querys.q);
-		this.props.pageNumChange(querys.page);
 		this.props.fetchList({querys},this.props.content);
 	}
 
     render() {
         const {
+			location: {query},
 			location: {
 				query:{
 					q:searchValue,
-					page:currentPageNum
+					type:queryType
 				}},
-			content
+			content,
+			currentPageNum,
+			fetchList
 		} = this.props
+
+		console.log(this.props);
 
         return (
 			<div>
 			<SearchBox
 				{...{
 					searchValue,
-					currentPageNum
+					currentPageNum,
+					queryType,
 				}}
 			/>
 			<List
@@ -66,8 +58,11 @@ export class Home extends React.Component {
 			/>
 			<Pager
 				{...{
+					currentPageNum,
 					searchValue,
-					currentPageNum
+					queryType,
+					content,
+					fetchList
 				}}
 			/>
 			</div>
@@ -85,6 +80,7 @@ function mapDispatchToProps(dispatch) {
         pageNumChange: (pageNum) => { dispatch(pageNumChange(pageNum)) },
 		fetchList: ({querys}, content) => {
 			dispatch(fetchList({querys},content))
+			dispatch(pageNumChange(querys.page))
 		}
     }
 }

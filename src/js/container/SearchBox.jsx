@@ -8,9 +8,10 @@ import styles from '../../css/components/searchbox.css'
 export default class List extends React.Component {
 
 	componentWillMount() {
+		console.log(this.props)
 		this.setState({
 			searchValue: this.props.searchValue,
-			selectValue: 'title'
+			selectValue: this.props.queryType == undefined ? 'title' :  this.props.queryType
 		})
 	}
 
@@ -35,14 +36,22 @@ export default class List extends React.Component {
 	}
 
 	render() {
+		const {
+			currentPageNum,
+			queryType,
+			fetchList,
+			searchValue
+		} = this.props
+
 		return (
 			<div className={styles.searchform}>
 				<div className={styles.customInput}>
 					<div className={styles.customSelect}>
 					<select
+						defaultValue={this.state.selectValue}
 						onChange={(e) => this.selectChange(e.target.value)}
 					>
-					{SEARCH_TYPE.map(({type, label, checkValue}) => {
+					{SEARCH_TYPE.map(({type, label}) => {
 						return <option
 							value={type}
 							key={type}
