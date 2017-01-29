@@ -11,7 +11,7 @@ import SearchBox from './SearchBox'
 import List from './List'
 import Pager from './Pager'
 import qs from 'qs'
-import { fetchList, valueChange, pageNumChange, scrollTop } from '../action/action'
+import { fetchList, changeValue, changeType, pageNumChange, scrollTop } from '../action/action'
 
 export class Home extends React.Component {
 	componentWillMount() {
@@ -22,13 +22,22 @@ export class Home extends React.Component {
 		this.queryChange(query);
 	}
 
-	queryChange(querys) {
-		this.props.valueChange(querys.q);
-		this.props.fetchList({querys},this.props.content);
+	shouldComponentUpdate(nextProps, nextState) {
+		const queriesBoolean = nextProps.pageParams !== this.props.pageParams && nextProps.location.query !== this.props.location.query;
+		console.log(nextProps.pageParams !== this.props.pageParams);
+		console.log(nextProps.location.query !== this.props.location.query);
+		console.log(queriesBoolean);
+		return queriesBoolean;
 	}
 
-    render() {
-        const {
+	queryChange(queries) {
+		this.props.changeValue(queries.q);
+		this.props.changeType(queries.type);
+		this.props.fetchList({queries},this.props.content);
+	}
+
+	render() {
+		const {
 			location: {query},
 			location: {
 				query:{
@@ -36,13 +45,13 @@ export class Home extends React.Component {
 					type:queryType
 				}},
 			content,
-			currentPageNum,
+			pageParams: {
+				currentPageNum
+			},
 			fetchList
 		} = this.props
 
-		console.log(this.props);
-
-        return (
+		return (
 			<div>
 			<SearchBox
 				{...{
@@ -66,23 +75,24 @@ export class Home extends React.Component {
 				}}
 			/>
 			</div>
-        )
-    }
+		)
+	}
 }
 
 function mapStateToProps(state) {
-    return state.home
+	return state.home
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        valueChange: (searchVlue) => { dispatch(valueChange(searchVlue)) },
-        pageNumChange: (pageNum) => { dispatch(pageNumChange(pageNum)) },
-		fetchList: ({querys}, content) => {
-			dispatch(fetchList({querys},content))
-			dispatch(pageNumChange(querys.page))
+	return {
+		changeValue: (searchVlue) => { dispatch(changeValue(searchVlue)) },
+		changeType: (searchType) => { dispatch(changeType(searchType)) },
+		pageNumChange: (pageNum) => { dispatch(pageNumChange(pageNum)) },
+		fetchList: ({queries}, content) => {
+			dispatch(fetchList({queries},content))
+			dispatch(pageNumChange(queries.page))
 		}
-    }
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

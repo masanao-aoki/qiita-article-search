@@ -31,15 +31,15 @@ export function fetchArticle(articleId) {
 	};
 }
 
-export function fetchList({querys},content) {
+export function fetchList({queries},content) {
 	return dispatch => {
 
 		let queryArray = {
-			query: `qiita+title:${querys.q}`,
-			page: querys.page
+			query: `qiita+title:${queries.q}`,
+			page: queries.page
 		}
 
-		console.log(querys.page)
+		console.log(queries)
 
 		const aricleList = () => {
 			return new Promise((resolve, reject) => {
@@ -102,8 +102,16 @@ export function returnRequest(result) {
 	}
 }
 
+export const CHANGE_SEARCH_TYPE = 'CHANGE_SEARCH_TYPE'
+export function changeType(searchType) {
+	return {
+		type: CHANGE_SEARCH_TYPE,
+		searchType
+	}
+}
+
 export const CHANGE_SEARCH_VALUE = 'CHANGE_SEARCH_VALUE'
-export function valueChange(searchValue) {
+export function changeValue(searchValue) {
 	return {
 		type: CHANGE_SEARCH_VALUE,
 		searchValue

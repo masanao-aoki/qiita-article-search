@@ -16,7 +16,7 @@ export default class Pager extends React.Component {
 			fetchList
 		} = this.props
 
-		const query = {
+		const queries = {
 			q: searchValue,
 			page: currentPageNum,
 			type: queryType
@@ -25,7 +25,7 @@ export default class Pager extends React.Component {
 		return (
 			<p
 			className={styles.moreBtn}
-			onClick={()=> fetchList({querys:query},content)}
+			onClick={()=> fetchList({queries},content)}
 			>MORE</p>
 		)
 	}

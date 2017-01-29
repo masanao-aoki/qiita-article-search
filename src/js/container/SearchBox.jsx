@@ -2,36 +2,32 @@
 
 import React from 'react'
 import classNames from 'classnames'
+import {Link} from 'react-router'
 import {SEARCH_TYPE} from '../constants/searchType'
 import styles from '../../css/components/searchbox.css'
 
 export default class List extends React.Component {
 
 	componentWillMount() {
-		console.log(this.props)
 		this.setState({
 			searchValue: this.props.searchValue,
 			selectValue: this.props.queryType == undefined ? 'title' :  this.props.queryType
 		})
 	}
 
-	pushButton(e) {
-		const {
-			valueChange
-		} = this.props
-
+	pushButton() {
 		window.location.href = `/#/search/?page=1&q=${this.state.searchValue}&type=${this.state.selectValue}`;
 	}
 
-	valueChange(e) {
+	valueChange(searchValue) {
 		this.setState({
-			searchValue: e
+			searchValue
 		})
 	}
 
-	selectChange(e) {
+	selectChange(selectValue) {
 		this.setState({
-			selectValue: e
+			selectValue
 		})
 	}
 
@@ -66,10 +62,7 @@ export default class List extends React.Component {
 					value={this.state.searchValue}
 					onChange={(e) => this.valueChange(e.target.value)}
 					/>
-					<p
-					className={styles.searchFormSubmit}
-					onClick = {() => this.pushButton()}
-					></p>
+					<Link className={styles.searchFormSubmit} to={`/search/?page=1&q=${this.state.searchValue}&type=${this.state.selectValue}`}>aaaaa</Link>
 				</div>
 			</div>
 		)
