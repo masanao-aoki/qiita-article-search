@@ -10,7 +10,7 @@ import _ from 'lodash'
 import SearchBox from './SearchBox'
 import List from './List'
 import Pager from './Pager'
-import { ajaxRequest, valueChange, typeChange, pageNumChange, scrollTop } from '../action/action'
+import { changeValue, changeType, pageNumChange } from '../action/action'
 
 import {SEARCH_TYPE} from '../constants/searchType'
 
@@ -20,15 +20,23 @@ export class Home extends React.Component {
 
 	render() {
 		const {
-			searchValue,
-			currentPageNum,
+			changeValue,
+			changeType,
+			pageParams: {
+				searchValue,
+				searchType,
+				currentPageNum
+			},
 		} = this.props
+
 		return (
 			<div>
 				<SearchBox
 					{...{
 						searchValue,
-						currentPageNum
+						currentPageNum,
+						changeValue,
+						changeType
 					}}
 				/>
 			</div>
@@ -41,7 +49,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return {}
+	return {
+		changeValue: (searchVlue) => { dispatch(changeValue(searchVlue)) },
+		changeType: (searchType) => { dispatch(changeType(searchType)) },
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

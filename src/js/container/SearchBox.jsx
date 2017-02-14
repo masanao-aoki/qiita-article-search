@@ -3,21 +3,11 @@
 import React from 'react'
 import classNames from 'classnames'
 import {Link} from 'react-router'
+import Form from 'react-router-form'
 import {SEARCH_TYPE} from '../constants/searchType'
 import styles from '../../css/components/searchbox.css'
 
 export default class List extends React.Component {
-
-	componentWillMount() {
-		this.setState({
-			searchValue: this.props.searchValue,
-			selectValue: this.props.queryType == undefined ? 'title' :  this.props.queryType
-		})
-	}
-
-	pushButton() {
-		window.location.href = `/#/search/?page=1&q=${this.state.searchValue}&type=${this.state.selectValue}`;
-	}
 
 	valueChange(searchValue) {
 		this.setState({
@@ -35,35 +25,39 @@ export default class List extends React.Component {
 		const {
 			currentPageNum,
 			queryType,
-			fetchList,
-			searchValue
+			searchValue,
+			changeType,
+			changeValue
 		} = this.props
 
 		return (
 			<div className={styles.searchform}>
-				<div className={styles.customInput}>
+
+				 <form action="/search" method="get" className={styles.customInput}>
 					<div className={styles.customSelect}>
-					<select
-						defaultValue={this.state.selectValue}
-						onChange={(e) => this.selectChange(e.target.value)}
-					>
-					{SEARCH_TYPE.map(({type, label}) => {
-						return <option
-							value={type}
-							key={type}
-						>{label}</option>
-					})}
-					</select>
+						<select
+							name="qaaa"
+							defaultValue={queryType}
+							onChange={(e) => changeType(e.target.value)}
+						>
+						{SEARCH_TYPE.map(({type, label}) => {
+							return <option
+								value={type}
+								key={type}
+							>{label}</option>
+						})}
+						</select>
 					</div>
 					<input
-					className={styles.searchformInput}
-					type="text"
-					placeholder='検索したい文言を入れてください'
-					value={this.state.searchValue}
-					onChange={(e) => this.valueChange(e.target.value)}
+						name="q"
+						className={styles.searchformInput}
+						type="text"
+						placeholder='検索したい文言を入れてください'
+						value={searchValue}
+						onChange={(e) => changeValue(e.target.value)}
 					/>
-					<Link className={styles.searchFormSubmit} to={`/search/?page=1&q=${this.state.searchValue}&type=${this.state.selectValue}`}>aaaaa</Link>
-				</div>
+					<button className={styles.searchFormSubmit} type="submit">Add Post</button>
+				</form>
 			</div>
 		)
 	}

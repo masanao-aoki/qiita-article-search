@@ -104,6 +104,7 @@ export function returnRequest(result) {
 
 export const CHANGE_SEARCH_TYPE = 'CHANGE_SEARCH_TYPE'
 export function changeType(searchType) {
+	console.log(searchType);
 	return {
 		type: CHANGE_SEARCH_TYPE,
 		searchType
@@ -112,6 +113,7 @@ export function changeType(searchType) {
 
 export const CHANGE_SEARCH_VALUE = 'CHANGE_SEARCH_VALUE'
 export function changeValue(searchValue) {
+	console.log(searchValue);
 	return {
 		type: CHANGE_SEARCH_VALUE,
 		searchValue

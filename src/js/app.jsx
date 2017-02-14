@@ -9,7 +9,7 @@ import { render } from 'react-dom'
 import thunk from 'redux-thunk'
 import { applyMiddleware, createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute, Link, hashHistory } from 'react-router'
+import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import * as reducers from './reducers'
 
@@ -34,7 +34,7 @@ const store = createStore(
     applyMiddleware(thunk)
 )
 
-const history = syncHistoryWithStore(hashHistory, store)
+const history = syncHistoryWithStore(browserHistory, store)
 
 
 render(
@@ -42,7 +42,7 @@ render(
         <Router history={history}>
             <Route path="/" component={App}>
                 <IndexRoute component={Home}/>
-                <Route path="search/" component={Search}/>
+                <Route path="search" component={Search}/>
                 <Route path="article/:id" component={Article}/>
             </Route>
         </Router>

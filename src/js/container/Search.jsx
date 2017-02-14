@@ -11,7 +11,7 @@ import SearchBox from './SearchBox'
 import List from './List'
 import Pager from './Pager'
 import qs from 'qs'
-import { fetchList, changeValue, changeType, pageNumChange, scrollTop } from '../action/action'
+import { fetchList, changeValue, changeType, pageNumChange } from '../action/action'
 
 export class Home extends React.Component {
 	componentWillMount() {
@@ -20,14 +20,7 @@ export class Home extends React.Component {
 			content
 		} = this.props
 		this.queryChange(query);
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		const queriesBoolean = nextProps.pageParams !== this.props.pageParams && nextProps.location.query !== this.props.location.query;
-		console.log(nextProps.pageParams !== this.props.pageParams);
-		console.log(nextProps.location.query !== this.props.location.query);
-		console.log(queriesBoolean);
-		return queriesBoolean;
+		console.log('ok');
 	}
 
 	queryChange(queries) {
@@ -45,6 +38,8 @@ export class Home extends React.Component {
 					type:queryType
 				}},
 			content,
+			changeType,
+			changeValue,
 			pageParams: {
 				currentPageNum
 			},
@@ -58,6 +53,8 @@ export class Home extends React.Component {
 					searchValue,
 					currentPageNum,
 					queryType,
+					changeType,
+					changeValue
 				}}
 			/>
 			<List

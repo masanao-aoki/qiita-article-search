@@ -1,3 +1,4 @@
+var fallback = require('express-history-api-fallback');
 var express = require('express');
 var app = express();
 var request = require('request');
@@ -5,6 +6,7 @@ var qs = require('qs');
 var qiita = require('./token.js');
 
 app.use(express.static('root'));
+app.use(fallback('index.html', { root: 'root' }))
 
 const port = 8888;
 app.listen(port,function(){
