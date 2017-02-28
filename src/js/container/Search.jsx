@@ -20,7 +20,6 @@ export class Home extends React.Component {
 			content
 		} = this.props
 		this.queryChange(query);
-		console.log('ok');
 	}
 
 	queryChange(queries) {
@@ -32,11 +31,8 @@ export class Home extends React.Component {
 	render() {
 		const {
 			location: {query},
-			location: {
-				query:{
-					q:searchValue,
-					type:queryType
-				}},
+			pageParams: { searchValue },
+			pageParams: { searchType },
 			content,
 			changeType,
 			changeValue,
@@ -52,7 +48,7 @@ export class Home extends React.Component {
 				{...{
 					searchValue,
 					currentPageNum,
-					queryType,
+					searchType,
 					changeType,
 					changeValue
 				}}
@@ -66,7 +62,7 @@ export class Home extends React.Component {
 				{...{
 					currentPageNum,
 					searchValue,
-					queryType,
+					searchType,
 					content,
 					fetchList
 				}}

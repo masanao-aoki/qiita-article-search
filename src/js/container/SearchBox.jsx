@@ -9,26 +9,16 @@ import styles from '../../css/components/searchbox.css'
 
 export default class List extends React.Component {
 
-	valueChange(searchValue) {
-		this.setState({
-			searchValue
-		})
-	}
-
-	selectChange(selectValue) {
-		this.setState({
-			selectValue
-		})
-	}
-
 	render() {
 		const {
 			currentPageNum,
-			queryType,
+			searchType,
 			searchValue,
 			changeType,
 			changeValue
 		} = this.props
+
+		console.log(searchType);
 
 		return (
 			<div className={styles.searchform}>
@@ -36,8 +26,8 @@ export default class List extends React.Component {
 				 <form action="/search" method="get" className={styles.customInput}>
 					<div className={styles.customSelect}>
 						<select
-							name="qaaa"
-							defaultValue={queryType}
+							name="type"
+							value={searchType}
 							onChange={(e) => changeType(e.target.value)}
 						>
 						{SEARCH_TYPE.map(({type, label}) => {
@@ -55,6 +45,11 @@ export default class List extends React.Component {
 						placeholder='検索したい文言を入れてください'
 						value={searchValue}
 						onChange={(e) => changeValue(e.target.value)}
+					/>
+					<input
+						name="page"
+						type="hidden"
+						value="1"
 					/>
 					<button className={styles.searchFormSubmit} type="submit">Add Post</button>
 				</form>

@@ -11,7 +11,7 @@ export default class Pager extends React.Component {
 		const {
 			currentPageNum,
 			searchValue,
-			queryType,
+			searchType,
 			content,
 			fetchList
 		} = this.props
@@ -19,7 +19,7 @@ export default class Pager extends React.Component {
 		const queries = {
 			q: searchValue,
 			page: currentPageNum,
-			type: queryType
+			type: searchType
 		}
 
 		return (

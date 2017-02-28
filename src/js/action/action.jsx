@@ -34,12 +34,14 @@ export function fetchArticle(articleId) {
 export function fetchList({queries},content) {
 	return dispatch => {
 
+		console.log(queries);
+
 		let queryArray = {
-			query: `qiita+title:${queries.q}`,
+			query: `qiita+${queries.type}:${queries.q}`,
 			page: queries.page
 		}
 
-		console.log(queries)
+		console.log(queryArray);
 
 		const aricleList = () => {
 			return new Promise((resolve, reject) => {
@@ -51,6 +53,7 @@ export function fetchList({queries},content) {
 					.get(url)
 					.withCredentials()
 					.end((err, res) => {
+						console.log(res.body)
 						if (res.body.length) {
 							let body = [...content, ...res.body];
 							resolve(body);
@@ -61,7 +64,6 @@ export function fetchList({queries},content) {
 
 			});
 		};
-
 		const aricleLists = aricleList();
 		aricleLists.then((result) => {
 			dispatch(returnRequest(result));
@@ -113,7 +115,6 @@ export function changeType(searchType) {
 
 export const CHANGE_SEARCH_VALUE = 'CHANGE_SEARCH_VALUE'
 export function changeValue(searchValue) {
-	console.log(searchValue);
 	return {
 		type: CHANGE_SEARCH_VALUE,
 		searchValue

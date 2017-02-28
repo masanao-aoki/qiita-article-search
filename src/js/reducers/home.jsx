@@ -4,10 +4,10 @@ const initialState = {
 	content: [],
 	pageParams: {
 		searchValue: '',
-		searchType: 'title',
+		searchType: '',
 		currentPageNum: 1
 	}
-	
+
 }
 
 export default function home(state = initialState, action) {
@@ -20,6 +20,7 @@ export default function home(state = initialState, action) {
 				)
 			}
 		case 'CHANGE_SEARCH_TYPE': {
+			console.log(action)
 			return Object.assign({}, state, {
 					pageParams: Object.assign({}, state.pageParams, {
 						searchType: action.searchType
