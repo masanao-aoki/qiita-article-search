@@ -6,7 +6,6 @@ var qs = require('qs');
 var qiita = require('./token.js');
 
 app.use(express.static('root'));
-app.use(fallback('index.html', { root: 'root' }))
 
 const port = 8888;
 app.listen(port,function(){
@@ -37,3 +36,6 @@ app.get('/api/',function(req,res){
 		}
 	})
 });
+
+
+app.use(fallback('index.html', { root: 'root' }));
