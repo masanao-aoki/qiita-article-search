@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { ajaxArticleRequest, returnArticleRequest } from '../action/action'
+import { fetchArticle, returnArticleRequest } from '../action/action'
 
 import styles from '../../css/components/list.css'
 
@@ -10,7 +10,7 @@ import styles from '../../css/components/list.css'
 export class Article extends React.Component {
 
     componentWillMount(){
-        this.props.init();
+        // this.props.init();
     }
 
     componentDidMount(){
@@ -38,7 +38,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         init: () => { dispatch(returnArticleRequest('')) },
-        contentRequest: (articleId) => { dispatch(ajaxArticleRequest(articleId)) }
+        contentRequest: (articleId) => { dispatch(fetchArticle(articleId)) }
     }
 }
 

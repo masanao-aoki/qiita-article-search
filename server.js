@@ -12,6 +12,34 @@ app.listen(port,function(){
 	console.log(`Expressサーバー（localhost:${port}）を起動しました。`);
 });
 
+
+app.get('/test/', function (req, res) {
+
+	res.send('about');
+
+	// const requestUrl = `https://qiita.com/api/v2/items/${req}`;
+	// const token = qiita.token;
+
+	// const headers = {
+	// 	'Authorization': `Bearer ${token}`
+	// };
+
+	// const option = {
+	// 	url: requestUrl,
+	// 	headers: headers
+	// }
+
+	// request(option,function (error, response, body) {
+	// 	if (!error && response.statusCode == 200) {
+	// 		const article = JSON.parse(body);
+	// 		const head = response.headers
+
+	// 		res.json(article);
+	// 	}
+	// })
+
+});
+
 app.get('/api/',function(req,res){
 
 	const locationQuery = qs.stringify(req.query);
