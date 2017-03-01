@@ -15,28 +15,27 @@ app.listen(port,function(){
 
 app.get('/test/', function (req, res) {
 
-	res.send('about');
+	const locationQuery = qs.parse(req.query);
+	const requestUrl = `https://qiita.com/api/v2/items/${locationQuery.id}`;
+	const token = qiita.token;
 
-	// const requestUrl = `https://qiita.com/api/v2/items/${req}`;
-	// const token = qiita.token;
+	const headers = {
+		'Authorization': `Bearer ${token}`
+	};
 
-	// const headers = {
-	// 	'Authorization': `Bearer ${token}`
-	// };
+	const option = {
+		url: requestUrl,
+		headers: headers
+	}
 
-	// const option = {
-	// 	url: requestUrl,
-	// 	headers: headers
-	// }
+	request(option, function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			const article = JSON.parse(body);
+			const head = response.headers
 
-	// request(option,function (error, response, body) {
-	// 	if (!error && response.statusCode == 200) {
-	// 		const article = JSON.parse(body);
-	// 		const head = response.headers
-
-	// 		res.json(article);
-	// 	}
-	// })
+			res.json(article);
+		}
+	})
 
 });
 

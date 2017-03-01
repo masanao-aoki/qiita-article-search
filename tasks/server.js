@@ -15,7 +15,7 @@ gulp.task('server', function () {
 		, ignore: [  // nodemon で監視しないディレクトリ
 			'node_modules'
 		],
-		stdout: false
+		// stdout: false
 })
 	.on('start',function () {
 		console.log('started')

@@ -15,7 +15,7 @@ export function fetchArticle(articleId) {
 				.get(url)
 				.withCredentials()
 					.end((err, res) => {
-					console.log('ok')
+					console.log(res.body)
 					if (res.body) {
 						resolve(res.body);
 					} else {
@@ -25,7 +25,6 @@ export function fetchArticle(articleId) {
 			});
 		};
 
-		console.log('ok');
 
 		const aricleDetails = aricleDetail();
 		aricleDetails.then((result) => {
