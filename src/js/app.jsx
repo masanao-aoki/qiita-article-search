@@ -9,7 +9,7 @@ import { render } from 'react-dom'
 import thunk from 'redux-thunk'
 import { applyMiddleware, createStore, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute, Link, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, Link, browserHistory, hashhistory } from 'react-router'
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 import * as reducers from './reducers'
 

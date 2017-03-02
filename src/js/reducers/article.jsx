@@ -6,9 +6,9 @@ const initialState = {
 
 export default function article(state = initialState, action) {
     switch(action.type) {
-        case 'DETAIL': {
+        case 'SUCCESS_ARTICLE_REQUESR': {
             return Object.assign({}, state, {
-                detailContent: action.text,
+                detailContent: action.result
                 })
             }
         default:

@@ -6,7 +6,6 @@ var qs = require('qs');
 var qiita = require('./token.js');
 
 app.use(express.static('root'));
-
 const port = 8888;
 app.listen(port,function(){
 	console.log(`Expressサーバー（localhost:${port}）を起動しました。`);

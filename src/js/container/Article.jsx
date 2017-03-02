@@ -2,9 +2,10 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
+import classNames from 'classnames'
 import { fetchArticle, returnArticleRequest } from '../action/action'
 
-import styles from '../../css/components/list.css'
+import styles from '../../css/components/article.css'
 
 
 export class Article extends React.Component {
@@ -14,17 +15,22 @@ export class Article extends React.Component {
     }
 
     componentDidMount(){
-        this.props.contentRequest(this.props.params.id);
+		this.props.contentRequest(this.props.params.id);
     }
 
+	componentWillUnmount() {
+		this.props.init();
+	}
 
-    render() {
+
+	render() {
+		console.log(styles);
         return (
             <div>
             <h2 className="article-item-title">
                 {this.props.detailContent.title}
             </h2>
-            <div className="markdownHelp_body" dangerouslySetInnerHTML={{__html: this.props.detailContent.rendered_body}}>
+            <div className={styles.markdown} dangerouslySetInnerHTML={{__html: this.props.detailContent.rendered_body}}>
             </div>
             </div>
         )
