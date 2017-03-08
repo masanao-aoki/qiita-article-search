@@ -1,16 +1,13 @@
-var fallback = require('express-history-api-fallback');
 var express = require('express');
 var app = express();
+var path = require('path')
 var request = require('request');
 var qs = require('qs');
 var qiita = require('./token.js');
+var port = 8888;
 
-app.use(express.static('root'));
-const port = 8888;
-app.listen(port,function(){
-	console.log(`Expressサーバー（localhost:${port}）を起動しました。`);
-});
 
+app.use(express.static(__dirname + '/root'));
 
 app.get('/test/', function (req, res) {
 
@@ -63,5 +60,10 @@ app.get('/api/',function(req,res){
 	})
 });
 
+app.get('*', function (request, response){
+	response.sendFile(path.resolve(__dirname, 'root', 'index.html'))
+})
 
-app.use(fallback('index.html', { root: 'root' }));
+app.listen(port,function(){
+	console.log(`Expressサーバー（localhost:${port}）を起動しました。`);
+});

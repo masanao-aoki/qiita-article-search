@@ -30,7 +30,7 @@ export class Article extends React.Component {
             <h2 className="article-item-title">
                 {this.props.detailContent.title}
             </h2>
-            <div className={styles.markdown} dangerouslySetInnerHTML={{__html: this.props.detailContent.rendered_body}}>
+            <div className={styles.markdownBody} dangerouslySetInnerHTML={{__html: this.props.detailContent.rendered_body}}>
             </div>
             </div>
         )

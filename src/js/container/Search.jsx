@@ -11,7 +11,7 @@ import SearchBox from './SearchBox'
 import List from './List'
 import Pager from './Pager'
 import qs from 'qs'
-import { fetchList, changeValue, changeType, pageNumChange } from '../action/action'
+import { fetchList, changeValue, changeType, pageNumChange,returnRequest } from '../action/action'
 
 export class Home extends React.Component {
 	componentWillMount() {
@@ -20,6 +20,10 @@ export class Home extends React.Component {
 			content
 		} = this.props
 		this.queryChange(query);
+	}
+
+	componentWillUnmount() {
+		this.props.itemInit();
 	}
 
 	queryChange(queries) {
@@ -81,6 +85,7 @@ function mapDispatchToProps(dispatch) {
 		changeValue: (searchVlue) => { dispatch(changeValue(searchVlue)) },
 		changeType: (searchType) => { dispatch(changeType(searchType)) },
 		pageNumChange: (pageNum) => { dispatch(pageNumChange(pageNum)) },
+		itemInit: () => { dispatch(returnRequest([])) },
 		fetchList: ({queries}, content) => {
 			dispatch(fetchList({queries},content))
 			dispatch(pageNumChange(queries.page))
