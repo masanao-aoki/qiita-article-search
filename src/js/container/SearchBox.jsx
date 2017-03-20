@@ -18,8 +18,6 @@ export default class List extends React.Component {
 			changeValue
 		} = this.props
 
-		console.log(searchType);
-
 		return (
 			<div className={styles.searchform}>
 

@@ -9,8 +9,6 @@ export function fetchArticle(articleId) {
 			return new Promise((resolve, reject) => {
 				let url = `/test/?id=${articleId}`;
 
-				console.log(url);
-
 				request
 				.get(url)
 				.withCredentials()
@@ -27,10 +25,10 @@ export function fetchArticle(articleId) {
 
 		const aricleDetails = aricleDetail();
 		aricleDetails.then((result) => {
-			console.log(result)
 			dispatch(returnArticleRequest(result));
+			dispatch(loadingStateChange(false));
 		}).catch(function (reason) {
-			// console.log('ok');
+			dispatch(loadingStateChange(false));
 		});
 
 	};
@@ -44,7 +42,6 @@ export function fetchList({queries},content) {
 			page: queries.page
 		}
 
-		console.log(queryArray);
 
 		const aricleList = () => {
 			return new Promise((resolve, reject) => {
@@ -56,7 +53,6 @@ export function fetchList({queries},content) {
 					.get(url)
 					.withCredentials()
 					.end((err, res) => {
-						console.log(res.body)
 						if (res.body.length) {
 							let body = [...content, ...res.body];
 							resolve(body);
@@ -69,9 +65,13 @@ export function fetchList({queries},content) {
 		};
 		const aricleLists = aricleList();
 		aricleLists.then((result) => {
+			const itemLength = result.length;
+			console.log(itemLength);
 			dispatch(returnRequest(result));
+			dispatch(loadingStateChange(false));
 		}).catch(function (reason) {
-			// console.log('ok');
+			dispatch(failRequest(true));
+			dispatch(loadingStateChange(false));
 		});
 
 	};
@@ -81,10 +81,16 @@ export function scrollTop() {
 	window.scrollTo(0, 0);
 }
 
+export const SUCCESS_LOADING_COMPLATE = 'SUCCESS_LOADING_COMPLATE'
+export function loadingStateChange(loadingState) {
+	return {
+		type: SUCCESS_LOADING_COMPLATE,
+		loadingState
+	}
+}
 
 export const SUCCESS_ARTICLE_REQUESR = 'SUCCESS_ARTICLE_REQUESR'
 export function returnArticleRequest(result) {
-	// console.log(data)
 	return {
 		type: SUCCESS_ARTICLE_REQUESR,
 		result
@@ -99,6 +105,14 @@ export function pageNumChange(currentPageNum) {
 	}
 }
 
+const FAIL_AJAX_REQUESR = 'FAIL_AJAX_REQUESR'
+export function failRequest(requestState) {
+	return {
+		type: FAIL_AJAX_REQUESR,
+		requestState
+	}
+}
+
 const SUCCESS_AJAX_REQUESR = 'SUCCESS_AJAX_REQUESR'
 export function returnRequest(result) {
 	return {
@@ -109,7 +123,6 @@ export function returnRequest(result) {
 
 export const CHANGE_SEARCH_TYPE = 'CHANGE_SEARCH_TYPE'
 export function changeType(searchType) {
-	console.log(searchType);
 	return {
 		type: CHANGE_SEARCH_TYPE,
 		searchType

@@ -3,7 +3,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-import { fetchArticle, returnArticleRequest } from '../action/action'
+import LoadingLayer from './LoadLayer'
+import { fetchArticle, returnArticleRequest, loadingStateChange } from '../action/action'
 
 import styles from '../../css/components/article.css'
 
@@ -20,17 +21,29 @@ export class Article extends React.Component {
 
 	componentWillUnmount() {
 		this.props.init();
+		this.props.loadingInit();
 	}
 
 
 	render() {
-		console.log(styles);
+        const {
+            detailContent,
+            loadingState,
+        } = this.props
+
+        //console.log(this.props)
+
         return (
             <div>
-            <h2 className="article-item-title">
-                {this.props.detailContent.title}
+                <LoadingLayer
+                {...{
+                    loadingState
+                }}
+                />
+            <h2 className={styles.articleTitle}>
+                {detailContent.title}
             </h2>
-            <div className={styles.markdownBody} dangerouslySetInnerHTML={{__html: this.props.detailContent.rendered_body}}>
+            <div className={styles.markdownBody} dangerouslySetInnerHTML={{__html: detailContent.rendered_body}}>
             </div>
             </div>
         )
@@ -44,6 +57,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         init: () => { dispatch(returnArticleRequest('')) },
+		loadingInit: () => { dispatch(loadingStateChange(true)) },
         contentRequest: (articleId) => { dispatch(fetchArticle(articleId)) }
     }
 }

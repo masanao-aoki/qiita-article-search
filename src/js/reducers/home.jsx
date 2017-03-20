@@ -2,16 +2,23 @@
 
 const initialState = {
 	content: [],
+	requestState: false,
 	pageParams: {
 		searchValue: '',
 		searchType: '',
 		currentPageNum: 1
-	}
+	},
+	loadingState: true
 
 }
 
 export default function home(state = initialState, action) {
 	switch(action.type) {
+		case 'SUCCESS_LOADING_COMPLATE': {
+			return Object.assign({}, state, {
+				loadingState: action.loadingState
+			});
+		}
 		case 'CHANGE_SEARCH_VALUE': {
 			return Object.assign({}, state, {
 					pageParams: Object.assign({}, state.pageParams, {
@@ -20,7 +27,6 @@ export default function home(state = initialState, action) {
 				)
 			}
 		case 'CHANGE_SEARCH_TYPE': {
-			console.log(action)
 			return Object.assign({}, state, {
 					pageParams: Object.assign({}, state.pageParams, {
 						searchType: action.searchType
@@ -29,7 +35,12 @@ export default function home(state = initialState, action) {
 			}
 		case 'SUCCESS_AJAX_REQUESR': {
 			return Object.assign({}, state, {
-				content: action.result,
+				content: action.result
+				})
+			}
+		case 'FAIL_AJAX_REQUESR': {
+			return Object.assign({}, state, {
+				requestState: action.requestState
 				})
 			}
 		case 'CHANGE_PAGE_NUM': {

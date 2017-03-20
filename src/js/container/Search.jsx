@@ -10,8 +10,10 @@ import _ from 'lodash'
 import SearchBox from './SearchBox'
 import List from './List'
 import Pager from './Pager'
+import LoadLayer from './LoadLayer'
 import qs from 'qs'
-import { fetchList, changeValue, changeType, pageNumChange,returnRequest } from '../action/action'
+import styles from '../../css/components/search.css'
+import { fetchList, changeValue, changeType, pageNumChange,returnRequest,loadingStateChange } from '../action/action'
 
 export class Home extends React.Component {
 	componentWillMount() {
@@ -24,6 +26,7 @@ export class Home extends React.Component {
 
 	componentWillUnmount() {
 		this.props.itemInit();
+		this.props.loadingInit();
 	}
 
 	queryChange(queries) {
@@ -40,6 +43,8 @@ export class Home extends React.Component {
 			content,
 			changeType,
 			changeValue,
+			loadingState,
+			requestState,
 			pageParams: {
 				currentPageNum
 			},
@@ -48,6 +53,15 @@ export class Home extends React.Component {
 
 		return (
 			<div>
+			<LoadLayer
+				{...{
+					loadingState
+				}}
+			/>
+			<div
+				className={styles.searchLayer}
+				style={{ display: this.props.lodingState ? 'block' : 'none' }}
+			></div>
 			<SearchBox
 				{...{
 					searchValue,
@@ -59,7 +73,8 @@ export class Home extends React.Component {
 			/>
 			<List
 				{...{
-					content
+					content,
+					requestState
 				}}
 			/>
 			<Pager
@@ -68,6 +83,7 @@ export class Home extends React.Component {
 					searchValue,
 					searchType,
 					content,
+					requestState,
 					fetchList
 				}}
 			/>
@@ -85,6 +101,7 @@ function mapDispatchToProps(dispatch) {
 		changeValue: (searchVlue) => { dispatch(changeValue(searchVlue)) },
 		changeType: (searchType) => { dispatch(changeType(searchType)) },
 		pageNumChange: (pageNum) => { dispatch(pageNumChange(pageNum)) },
+		loadingInit: () => { dispatch(loadingStateChange(true)) },
 		itemInit: () => { dispatch(returnRequest([])) },
 		fetchList: ({queries}, content) => {
 			dispatch(fetchList({queries},content))
