@@ -4,7 +4,9 @@ var path = require('path')
 var request = require('request');
 var qs = require('qs');
 var qiita = require('./token.js');
-var port = process.env.PORT || 8888;
+
+app.set('port', (process.env.PORT || 8000));
+
 
 
 app.use(express.static(__dirname + '/root'));
@@ -64,6 +66,6 @@ app.get('*', function (request, response){
 	response.sendFile(path.resolve(__dirname, 'root', 'index.html'))
 })
 
-app.listen(port, function () {
+app.listen(app.get('port'),function(){
 	console.log(`Expressサーバー（localhost:${port}）を起動しました。`);
 });
