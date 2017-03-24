@@ -67,5 +67,5 @@ app.get('*', function (request, response){
 })
 
 app.listen(app.get('port'),function(){
-	console.log(`Expressサーバー（localhost:${port}）を起動しました。`);
+	console.log(`Expressサーバーを起動しました。`);
 });
