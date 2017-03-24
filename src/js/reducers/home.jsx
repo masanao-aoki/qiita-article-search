@@ -8,12 +8,17 @@ const initialState = {
 		searchType: '',
 		currentPageNum: 1
 	},
-	loadingState: true
-
+	loadingState: true,
+	nextPageState: true
 }
 
 export default function home(state = initialState, action) {
-	switch(action.type) {
+	switch (action.type) {
+		case 'CHANGE_NEXT_PAGE_FLAG': {
+			return Object.assign({}, state, {
+				nextPageState: action.nextPageFlg
+			});
+		}
 		case 'SUCCESS_LOADING_COMPLATE': {
 			return Object.assign({}, state, {
 				loadingState: action.loadingState

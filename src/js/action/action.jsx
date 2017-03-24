@@ -66,7 +66,8 @@ export function fetchList({queries},content) {
 		const aricleLists = aricleList();
 		aricleLists.then((result) => {
 			const itemLength = result.length;
-			console.log(itemLength);
+			const nextPageflg = 0 === itemLength % 10 ? true : false;
+			dispatch(changeNextPageState(nextPageflg));
 			dispatch(returnRequest(result));
 			dispatch(loadingStateChange(false));
 		}).catch(function (reason) {
@@ -94,6 +95,14 @@ export function returnArticleRequest(result) {
 	return {
 		type: SUCCESS_ARTICLE_REQUESR,
 		result
+	}
+}
+
+export const CHANGE_NEXT_PAGE_FLAG = 'CHANGE_NEXT_PAGE_FLAG'
+export function changeNextPageState(state) {
+	return {
+		type: CHANGE_NEXT_PAGE_FLAG,
+		nextPageFlg: state
 	}
 }
 

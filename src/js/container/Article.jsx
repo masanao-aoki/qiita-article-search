@@ -11,10 +11,6 @@ import styles from '../../css/components/article.css'
 
 export class Article extends React.Component {
 
-    componentWillMount(){
-        // this.props.init();
-    }
-
     componentDidMount(){
 		this.props.contentRequest(this.props.params.id);
     }
@@ -24,30 +20,29 @@ export class Article extends React.Component {
 		this.props.loadingInit();
 	}
 
-
 	render() {
-        const {
-            detailContent,
-            loadingState,
-        } = this.props
+		const {
+			detailContent,
+			loadingState,
+		} = this.props
 
-        //console.log(this.props)
+		//console.log(this.props)
 
-        return (
-            <div>
-                <LoadingLayer
-                {...{
-                    loadingState
-                }}
-                />
-            <h2 className={styles.articleTitle}>
-                {detailContent.title}
-            </h2>
-            <div className={styles.markdownBody} dangerouslySetInnerHTML={{__html: detailContent.rendered_body}}>
-            </div>
-            </div>
-        )
-    }
+		return (
+			<div>
+				<LoadingLayer
+				{...{
+					loadingState
+				}}
+				/>
+			<h2 className={styles.articleTitle}>
+				{detailContent.title}
+			</h2>
+			<div className={styles.markdownBody} dangerouslySetInnerHTML={{__html: detailContent.rendered_body}}>
+			</div>
+			</div>
+		)
+	}
 }
 
 function mapStateToProps(state) {

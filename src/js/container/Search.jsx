@@ -45,11 +45,14 @@ export class Home extends React.Component {
 			changeValue,
 			loadingState,
 			requestState,
+			nextPageState,
 			pageParams: {
 				currentPageNum
 			},
 			fetchList
 		} = this.props
+
+		console.log(nextPageState);
 
 		return (
 			<div>
@@ -84,6 +87,7 @@ export class Home extends React.Component {
 					searchType,
 					content,
 					requestState,
+					nextPageState,
 					fetchList
 				}}
 			/>
