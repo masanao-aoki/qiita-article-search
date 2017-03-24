@@ -5,5 +5,3 @@ Thumbs.db
 Gemfile.lock
 #directory ignore
 node_modules/
-root/
-token.js
