@@ -2,11 +2,15 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
 import classNames from 'classnames'
+import moment from 'moment'
+//component
 import LoadLayer from './LoadLayer'
-import { fetchArticle, returnArticleRequest, loadingStateChange } from '../action/action'
-
+//style
 import styles from '../../css/components/article.css'
+//action
+import { fetchArticle, returnArticleRequest, loadingStateChange } from '../action/action'
 
 
 export class Article extends React.Component {
@@ -26,16 +30,33 @@ export class Article extends React.Component {
 			loadingState,
 		} = this.props
 
-		//console.log(this.props)
+		console.log(detailContent);
 
 		return (
 			<div>
 				{ loadingState &&
 					<LoadLayer/>
 				}
-			<h2 className={styles.articleTitle}>
-				{detailContent.title}
-			</h2>
+			<div className={styles.artivleHead}>
+				<h2 className={styles.articleTitle}>
+					{detailContent.title}
+				</h2>
+				{detailContent.length != 0 &&
+					<ul className={styles.articleTagGroup}>
+						{detailContent.tags.map(({name}) => {
+							return <li key={name}>{name}</li>
+						})}
+					</ul>
+				}
+				<p className={styles.articleTime}>{moment(detailContent.created_at).format("YYYY/MM/DD")}</p>
+
+				{detailContent.length != 0 &&
+					<p className={styles.articleUser}>{detailContent.user.name ? detailContent.user.name : detailContent.user.id}</p>
+				}
+				<p
+					onClick={browserHistory.goBack}
+				>aaaaaa</p>
+			</div>
 			<div className={styles.markdownBody} dangerouslySetInnerHTML={{__html: detailContent.rendered_body}}>
 			</div>
 			</div>
