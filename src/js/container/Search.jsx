@@ -52,7 +52,7 @@ export class Home extends React.Component {
 			fetchList
 		} = this.props
 
-		console.log(nextPageState);
+		console.log(loadingState);
 
 		return (
 			<div>
