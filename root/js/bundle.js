@@ -49114,6 +49114,8 @@
 				page: queries.page
 			};
 
+			dispatch(loadingStateChange(true));
+
 			var aricleList = function aricleList() {
 				return new Promise(function (resolve, reject) {
 
@@ -84176,15 +84178,14 @@
 			value: function render() {
 				var requestState = this.props.requestState;
 
-				var messageComponent = requestState ? _react2.default.createElement(
-					'p',
-					null,
-					'\u691C\u7D22\u7D50\u679C\u306F\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F'
-				) : null;
 				return _react2.default.createElement(
 					'div',
 					{ className: _list2.default.article },
-					messageComponent,
+					requestState && _react2.default.createElement(
+						'p',
+						{ className: _list2.default.error },
+						'\u691C\u7D22\u7D50\u679C\u306F\u898B\u3064\u304B\u308A\u307E\u305B\u3093\u3067\u3057\u305F'
+					),
 					this.props.content.map(function (_ref) {
 						var title = _ref.title,
 						    tags = _ref.tags,
@@ -84280,7 +84281,7 @@
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n\n/***************************************************\n\tarticle\n***************************************************/\n.list__article___W1kb4 .list__article-item___1eFDa {\n    position: relative;\n    margin: 0;\n    box-sizing: border-box;\n    background: #f3f3f3;\n}\n.list__article___W1kb4 .list__article-item___1eFDa a {\n    display: block;\n    padding: 3.8rem 1rem;\n}\n.list__article___W1kb4 .list__article-item___1eFDa a:hover {\n    text-decoration: none;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-head___1mZnb {\n    color: #333;\n    text-align: center;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-head___1mZnb .list__article-item-title___2sRNJ {\n    margin: 0 1.5rem 1rem 0;\n    font-size: 2rem;\n    line-height: 1.75;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-head___1mZnb .list__article-item-tag-group___5mld7 li {\n    display: inline-block;\n    margin: 0 .5rem .5rem;\n    padding: .8rem;\n    border-radius: .4rem;\n    background: #e91e63;\n    color: #fff\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-head___1mZnb .list__article-item-tag-group___5mld7 li.list__article-item-tag-group-item-active___vly7H{\n    color: red;\n    font-weight: bold;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-user___Vd8aI {\n    text-align: center;\n    color: #666;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-time___1dm2e {\n    display: block;\n    margin: 1rem 0;\n    text-align: center;\n    color: #666;\n}\n.list__article___W1kb4 .list__article-item___1eFDa:nth-child(odd){\n    background: #fcfcfc;\n}\n.list__article___W1kb4 .list__article-item___1eFDa:nth-child(odd)::after{\n    border-color: #fcfcfc transparent transparent transparent;\n}\n.list__article___W1kb4 .list__article-item___1eFDa::after{\n    position: absolute;\n    bottom: -2.4rem;\n    left: 50%;\n    z-index: 1;\n    width: 0;\n    height: 0;\n    border-style: solid;\n    border-width: 2.4rem 6rem 0 6rem;\n    border-color: #f3f3f3 transparent transparent transparent;\n    content: '';\n    -webkit-transform: translate(-50%,0);\n    transform: translate(-50%,0);\n}\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n\n/***************************************************\n\tarticle\n***************************************************/\n.list__article___W1kb4 .list__article-item___1eFDa {\n\tposition: relative;\n\tmargin: 0;\n\tbox-sizing: border-box;\n\tbackground: #f3f3f3;\n}\n.list__article___W1kb4 .list__article-item___1eFDa a {\n\tdisplay: block;\n\tpadding: 3.8rem 1rem;\n}\n.list__article___W1kb4 .list__article-item___1eFDa a:hover {\n\ttext-decoration: none;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-head___1mZnb {\n\tcolor: #333;\n\ttext-align: center;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-head___1mZnb .list__article-item-title___2sRNJ {\n\tmargin: 0 1.5rem 1rem 0;\n\tfont-size: 2rem;\n\tline-height: 1.75;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-head___1mZnb .list__article-item-tag-group___5mld7 li {\n\tdisplay: inline-block;\n\tmargin: 0 .5rem .5rem;\n\tpadding: .8rem;\n\tborder-radius: .4rem;\n\tbackground: #e91e63;\n\tcolor: #fff\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-head___1mZnb .list__article-item-tag-group___5mld7 li.list__article-item-tag-group-item-active___vly7H{\n\tcolor: red;\n\tfont-weight: bold;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-user___Vd8aI {\n\ttext-align: center;\n\tcolor: #666;\n}\n.list__article___W1kb4 .list__article-item___1eFDa .list__article-item-time___1dm2e {\n\tdisplay: block;\n\tmargin: 1rem 0;\n\ttext-align: center;\n\tcolor: #666;\n}\n.list__article___W1kb4 .list__article-item___1eFDa:nth-child(odd){\n\tbackground: #fcfcfc;\n}\n.list__article___W1kb4 .list__article-item___1eFDa:nth-child(odd)::after{\n\tborder-color: #fcfcfc transparent transparent transparent;\n}\n.list__article___W1kb4 .list__article-item___1eFDa::after{\n\tposition: absolute;\n\tbottom: -2.4rem;\n\tleft: 50%;\n\tz-index: 1;\n\twidth: 0;\n\theight: 0;\n\tborder-style: solid;\n\tborder-width: 2.4rem 6rem 0 6rem;\n\tborder-color: #f3f3f3 transparent transparent transparent;\n\tcontent: '';\n\t-webkit-transform: translate(-50%,0);\n\ttransform: translate(-50%,0);\n}\n\n.list__error___2lHJr {\n\tcolor: #fb5c5c;\n\tpadding: 2rem;\n\ttext-align: center;\n\tfont-size: 2rem;\n} ", ""]);
 
 	// exports
 	exports.locals = {
@@ -84299,7 +84300,9 @@
 		"article-item-user": "list__article-item-user___Vd8aI",
 		"articleItemUser": "list__article-item-user___Vd8aI",
 		"article-item-time": "list__article-item-time___1dm2e",
-		"articleItemTime": "list__article-item-time___1dm2e"
+		"articleItemTime": "list__article-item-time___1dm2e",
+		"error": "list__error___2lHJr",
+		"error": "list__error___2lHJr"
 	};
 
 /***/ },
@@ -84545,18 +84548,10 @@
 				    fetchList = _props2.fetchList;
 
 
-				console.log(nextPageState);
-
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(_LoadLayer2.default, {
-						loadingState: loadingState
-					}),
-					_react2.default.createElement('div', {
-						className: _search2.default.searchLayer,
-						style: { display: this.props.lodingState ? 'block' : 'none' }
-					}),
+					loadingState && _react2.default.createElement(_LoadLayer2.default, null),
 					_react2.default.createElement(_SearchBox2.default, {
 						searchValue: searchValue,
 						currentPageNum: currentPageNum,
@@ -84662,12 +84657,8 @@
 		_createClass(LoadLayer, [{
 			key: 'render',
 			value: function render() {
-				var loadingState = this.props.loadingState;
-
-
 				return _react2.default.createElement('div', {
-					className: _loadlayer2.default.searchLayer,
-					style: { display: loadingState ? 'block' : 'none' }
+					className: _loadlayer2.default.searchLayer
 				});
 			}
 		}]);
@@ -84833,9 +84824,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(_LoadLayer2.default, {
-						loadingState: loadingState
-					}),
+					loadingState && _react2.default.createElement(_LoadLayer2.default, null),
 					_react2.default.createElement(
 						'h2',
 						{ className: _article2.default.articleTitle },
