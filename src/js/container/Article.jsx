@@ -3,7 +3,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import classNames from 'classnames'
-import LoadingLayer from './LoadLayer'
+import LoadLayer from './LoadLayer'
 import { fetchArticle, returnArticleRequest, loadingStateChange } from '../action/action'
 
 import styles from '../../css/components/article.css'
@@ -30,11 +30,9 @@ export class Article extends React.Component {
 
 		return (
 			<div>
-				<LoadingLayer
-				{...{
-					loadingState
-				}}
-				/>
+				{ loadingState &&
+					<LoadLayer/>
+				}
 			<h2 className={styles.articleTitle}>
 				{detailContent.title}
 			</h2>
