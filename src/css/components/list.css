@@ -70,3 +70,10 @@
 		}
 	}
 }
+
+.error {
+	color: #fb5c5c;
+	padding: 2rem;
+	text-align: center;
+	font-size: 2rem;
+} 

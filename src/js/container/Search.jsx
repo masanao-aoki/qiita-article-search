@@ -52,19 +52,11 @@ export class Home extends React.Component {
 			fetchList
 		} = this.props
 
-		console.log(nextPageState);
-
 		return (
 			<div>
-			<LoadLayer
-				{...{
-					loadingState
-				}}
-			/>
-			<div
-				className={styles.searchLayer}
-				style={{ display: this.props.lodingState ? 'block' : 'none' }}
-			></div>
+				{ loadingState &&
+					<LoadLayer/>
+				}
 			<SearchBox
 				{...{
 					searchValue,

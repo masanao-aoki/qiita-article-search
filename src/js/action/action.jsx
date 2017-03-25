@@ -42,6 +42,7 @@ export function fetchList({queries},content) {
 			page: queries.page
 		}
 
+		dispatch(loadingStateChange(true));
 
 		const aricleList = () => {
 			return new Promise((resolve, reject) => {
