@@ -12,10 +12,12 @@ export default class List extends React.Component {
 		const {
 			requestState
 		} = this.props
-		const messageComponent = requestState ? <p>検索結果は見つかりませんでした</p> : null;
 		return (
 			<div className={styles.article}>
-				{messageComponent}
+				{
+					requestState && 
+					<p className={styles.error}>検索結果は見つかりませんでした</p>
+				}
 				{this.props.content.map(({title, tags, id, created_at, user}) => {
 					const articleUrl = '/detail/' + id;
 					const createdDate = moment(created_at).format("YYYY/MM/DD");
