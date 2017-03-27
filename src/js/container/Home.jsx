@@ -3,14 +3,8 @@
 import React from 'react'
 import { ReactDOM } from 'react-dom'
 import { connect } from 'react-redux'
-import moment from 'moment'
-import classNames from 'classnames'
-import {Link} from 'react-router'
-import _ from 'lodash'
 import SearchBox from './SearchBox'
-import List from './List'
-import Pager from './Pager'
-import { changeValue, changeType, pageNumChange } from '../action/action'
+import { changeValue, changeType } from '../action/action'
 
 import {SEARCH_TYPE} from '../constants/searchType'
 
