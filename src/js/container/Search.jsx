@@ -3,16 +3,17 @@
 import React from 'react'
 import { ReactDOM } from 'react-dom'
 import { connect } from 'react-redux'
-import moment from 'moment'
 import classNames from 'classnames'
 import {Link} from 'react-router'
-import _ from 'lodash'
+import qs from 'qs'
+//conponents
 import SearchBox from './SearchBox'
 import List from './List'
 import Pager from './Pager'
 import LoadLayer from './LoadLayer'
-import qs from 'qs'
+//styles
 import styles from '../../css/components/search.css'
+//action
 import { fetchList, changeValue, changeType, pageNumChange,returnRequest,loadingStateChange } from '../action/action'
 
 export class Home extends React.Component {
