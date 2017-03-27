@@ -30,7 +30,6 @@ export class Article extends React.Component {
 			loadingState,
 		} = this.props
 
-		console.log(detailContent);
 
 		return (
 			<div>
@@ -53,9 +52,9 @@ export class Article extends React.Component {
 				{detailContent.length != 0 &&
 					<p className={styles.articleUser}>{detailContent.user.name ? detailContent.user.name : detailContent.user.id}</p>
 				}
-				<p
+				{/*<p
 					onClick={browserHistory.goBack}
-				>aaaaaa</p>
+				>aaaaaa</p>*/}
 			</div>
 			<div className={styles.markdownBody} dangerouslySetInnerHTML={{__html: detailContent.rendered_body}}>
 			</div>
