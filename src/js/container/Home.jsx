@@ -9,8 +9,6 @@ import { changeValue, changeType } from '../action/action'
 import {SEARCH_TYPE} from '../constants/searchType'
 
 export class Home extends React.Component {
-	componentDidMount() {
-	}
 
 	render() {
 		const {
