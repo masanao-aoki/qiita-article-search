@@ -2,7 +2,6 @@
 
 import React from 'react'
 import moment from 'moment'
-import classNames from 'classnames'
 import { Link } from 'react-router'
 import styles from '../../css/components/list.css'
 
@@ -15,7 +14,7 @@ export default class List extends React.Component {
 		return (
 			<div className={styles.article}>
 				{
-					requestState && 
+					requestState &&
 					<p className={styles.error}>検索結果は見つかりませんでした</p>
 				}
 				{this.props.content.map(({title, tags, id, created_at, user}) => {
