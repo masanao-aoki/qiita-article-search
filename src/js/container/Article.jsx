@@ -3,7 +3,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
-import classNames from 'classnames'
 import moment from 'moment'
 //component
 import LoadLayer from './LoadLayer'
