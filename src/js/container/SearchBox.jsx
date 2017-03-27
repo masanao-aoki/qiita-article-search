@@ -1,9 +1,7 @@
 'use strict';
 
 import React from 'react'
-import classNames from 'classnames'
 import {Link} from 'react-router'
-import Form from 'react-router-form'
 import {SEARCH_TYPE} from '../constants/searchType'
 import styles from '../../css/components/searchbox.css'
 
