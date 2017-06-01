@@ -3,9 +3,6 @@
 import React from 'react'
 import { ReactDOM } from 'react-dom'
 import { connect } from 'react-redux'
-import classNames from 'classnames'
-import {Link} from 'react-router'
-import qs from 'qs'
 //conponents
 import SearchBox from './SearchBox'
 import List from './List'
