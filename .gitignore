@@ -6,4 +6,5 @@ Gemfile.lock
 #directory ignore
 node_modules/
 root/
+package-lock.json
 token.js
